@@ -1,14 +1,10 @@
 import React, { Component } from 'react'
 import DevTools from 'mobx-react-devtools'
-import { observer, inject } from 'mobx-react'
 import Search from './Search'
 import UserList from './UserList'
 
 class App extends Component {
-
   render() {
-    const { ProfilesStore } = this.props
-    const { list } = ProfilesStore
     return (
       <div className="App">
         <DevTools />
@@ -16,10 +12,10 @@ class App extends Component {
           <h1 className="App-title">Welcome to React + MobX</h1>
         </header>
         <Search />
-        <UserList userList={list} />
+        <UserList />
       </div>
     );
   }
 }
 
-export default inject('ProfilesStore')(observer(App));
+export default App

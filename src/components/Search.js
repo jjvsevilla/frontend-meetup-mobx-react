@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
 
 class SearchBar extends Component {
-
   handleChange = (event) => {
     this.props.ProfilesStore.setUsername(event.target.value)
   }
@@ -17,10 +16,10 @@ class SearchBar extends Component {
     return (
       <form onSubmit={this.handleSubmit} className="search">
         <label>
-          github account:
+          GitHub account:
           <input type="text" value={username} onChange={this.handleChange} />
         </label>
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Search" />
       </form>
     )
   }

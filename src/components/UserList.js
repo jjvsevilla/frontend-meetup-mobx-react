@@ -1,17 +1,14 @@
-import React, { Component } from 'react'
-import { observer } from 'mobx-react'
-import uuidV4 from 'uuid/v4'
+import React from 'react'
+import { inject, observer } from 'mobx-react'
 import Profile from './Profile'
 
-class UserList extends Component {
-  render() {
-    const { userList } = this.props;
-    return (
-      <div className="list">
-        {userList.map((user, index) => <Profile key={uuidV4()} {...user} />)}
-      </div>
-    )
-  }
-}
+const UserList = inject('ProfilesStore')(observer(({ ProfilesStore }) => {
+  const { list: userList } = ProfilesStore
+  return (
+    <div className="list">
+      {userList.map((user, index) => <Profile key={user.uuid} {...user} />)}
+    </div>
+  )
+}))
 
-export default observer(UserList)
+export default UserList
