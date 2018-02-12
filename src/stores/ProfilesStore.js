@@ -1,4 +1,4 @@
-import { observable, action } from "mobx"
+import { observable, action, computed, autorun } from "mobx"
 import Profile from '../models/Profile'
 import { mocks } from '../helpers/mocks'
 import { randomChoice } from '../helpers/utils'
@@ -6,6 +6,12 @@ import { randomChoice } from '../helpers/utils'
 class ProfilesStore {
   @observable username = 'jjvsevilla';
   @observable list = [];
+
+  constructor() {
+    autorun(() => {
+      console.log(`Number of success loaded profiles ${this.totalLoadedProfiles}`)
+    })
+  }
 
   @action setUsername = (value) =>{
     this.username = value
@@ -18,6 +24,10 @@ class ProfilesStore {
     // this.setUsername(mock.login)
 
     this.list.push(new Profile(this.username))
+  }
+
+  @computed get totalLoadedProfiles() {
+    return this.list.filter(item => !!item.profile).length
   }
 }
 

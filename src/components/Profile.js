@@ -1,5 +1,5 @@
 import React from 'react';
-
+// import { observer } from 'mobx'
 const showProfile = (loading, error) => (
   !loading && !error
 )
@@ -16,6 +16,8 @@ const showContent = (username, profile, loading, error) => {
       </p>
     )
   }
+
+  console.log('profile', profile)
   return (
     <React.Fragment>
       <p className="name">{profile.name}</p>
